@@ -4,6 +4,7 @@ import com.mibauzas.didemo.controllers.ConstructorInjectedController;
 import com.mibauzas.didemo.controllers.MyController;
 import com.mibauzas.didemo.controllers.PropertyInjectedController;
 import com.mibauzas.didemo.controllers.SetterInjectedController;
+import com.mibauzas.didemo.examplebeans.FakeDatasource;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,9 +18,9 @@ public class DiDemoApplication {
 
 		MyController controller = (MyController) ctx.getBean("myController");
 
-		System.out.println(controller.hello());
-		System.out.println(ctx.getBean(PropertyInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(SetterInjectedController.class).sayHello());
-		System.out.println(ctx.getBean(ConstructorInjectedController.class).sayHello());
+		FakeDatasource fakeDatasource = (FakeDatasource) ctx.getBean(FakeDatasource.class);
+
+		System.out.println(fakeDatasource.getUser());
+
 	}
 }
