@@ -1,6 +1,7 @@
 package com.mibauzas.didemo.config;
 
 import com.mibauzas.didemo.examplebeans.FakeDatasource;
+import com.mibauzas.didemo.examplebeans.FakeJmsBroker;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -12,7 +13,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
  * PropertyConfig
  */
 @Configuration
-@PropertySource("classpath:datasource.properties")
+@PropertySource({"classpath:datasource.properties","classpath:jms.properties"})
 public class PropertyConfig {
 
     @Value("${com.mibauzas.user}")
@@ -23,6 +24,15 @@ public class PropertyConfig {
 
     @Value("${com.mibauzas.url}")
     String url;
+
+    @Value("${com.mibauzas.jms.username}")
+    String jmsUsername;
+
+    @Value("${com.mibauzas.jms.password}")
+    String jmsPassword;
+
+    @Value("${com.mibauzas.jms.url}")
+    String jmsUrl;
 
     @Bean
     public FakeDatasource fakeDatasource() {
@@ -38,5 +48,14 @@ public class PropertyConfig {
         PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer = new PropertySourcesPlaceholderConfigurer();
         return propertySourcesPlaceholderConfigurer;
         
+    }
+
+    @Bean
+    public FakeJmsBroker fakeJmsBroker() {
+        FakeJmsBroker fakeJmsBroker = new FakeJmsBroker();
+        fakeJmsBroker.setUsername(jmsUsername);
+        fakeJmsBroker.setPassword(jmsPassword);
+        fakeJmsBroker.setUrl(jmsUrl);
+        return fakeJmsBroker;
     }
 }
