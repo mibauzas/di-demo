@@ -1,9 +1,6 @@
 package com.mibauzas.didemo;
 
-import com.mibauzas.didemo.controllers.ConstructorInjectedController;
 import com.mibauzas.didemo.controllers.MyController;
-import com.mibauzas.didemo.controllers.PropertyInjectedController;
-import com.mibauzas.didemo.controllers.SetterInjectedController;
 import com.mibauzas.didemo.examplebeans.FakeDatasource;
 import com.mibauzas.didemo.examplebeans.FakeJmsBroker;
 
